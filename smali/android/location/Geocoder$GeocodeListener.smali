@@ -1,0 +1,15 @@
+###### Class android.location.Geocoder$GeocodeListener (android.location.Geocoder$GeocodeListener)
+.class public interface abstract synthetic Landroid/location/Geocoder$GeocodeListener;
+.super Ljava/lang/Object;
+
+
+# direct methods
+.method static synthetic constructor <clinit>()V
+    .registers 1
+
+    new-instance v0, Ljava/lang/NoClassDefFoundError;
+
+    invoke-direct {v0}, Ljava/lang/NoClassDefFoundError;-><init>()V
+
+    throw v0
+.end method

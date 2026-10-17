@@ -1,0 +1,91 @@
+###### Class androidx.transition.AnimatorUtils (androidx.transition.AnimatorUtils)
+.class Landroidx/transition/AnimatorUtils;
+.super Ljava/lang/Object;
+.source "AnimatorUtils.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Landroidx/transition/AnimatorUtils$AnimatorPauseListenerCompat;
+    }
+.end annotation
+
+
+# direct methods
+.method private constructor <init>()V
+    .registers 1
+
+    .line 81
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 82
+    return-void
+.end method
+
+.method static addPauseListener(Landroid/animation/Animator;Landroid/animation/AnimatorListenerAdapter;)V
+    .registers 2
+    .param p0, "animator"    # Landroid/animation/Animator;
+    .param p1, "listener"    # Landroid/animation/AnimatorListenerAdapter;
+
+    .line 31
+    nop
+
+    .line 32
+    invoke-virtual {p0, p1}, Landroid/animation/Animator;->addPauseListener(Landroid/animation/Animator$AnimatorPauseListener;)V
+
+    .line 34
+    return-void
+.end method
+
+.method static pause(Landroid/animation/Animator;)V
+    .registers 1
+    .param p0, "animator"    # Landroid/animation/Animator;
+
+    .line 37
+    nop
+
+    .line 38
+    invoke-virtual {p0}, Landroid/animation/Animator;->pause()V
+
+    .line 50
+    return-void
+.end method
+
+.method static resume(Landroid/animation/Animator;)V
+    .registers 1
+    .param p0, "animator"    # Landroid/animation/Animator;
+
+    .line 53
+    nop
+
+    .line 54
+    invoke-virtual {p0}, Landroid/animation/Animator;->resume()V
+
+    .line 66
+    return-void
+.end method
+
+###### Class androidx.transition.AnimatorUtils.AnimatorPauseListenerCompat (androidx.transition.AnimatorUtils$AnimatorPauseListenerCompat)
+.class interface abstract Landroidx/transition/AnimatorUtils$AnimatorPauseListenerCompat;
+.super Ljava/lang/Object;
+.source "AnimatorUtils.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/transition/AnimatorUtils;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x608
+    name = "AnimatorPauseListenerCompat"
+.end annotation
+
+
+# virtual methods
+.method public abstract onAnimationPause(Landroid/animation/Animator;)V
+.end method
+
+.method public abstract onAnimationResume(Landroid/animation/Animator;)V
+.end method

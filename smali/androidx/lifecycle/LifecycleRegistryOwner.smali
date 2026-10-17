@@ -1,0 +1,36 @@
+###### Class androidx.lifecycle.LifecycleRegistryOwner (androidx.lifecycle.LifecycleRegistryOwner)
+.class public interface abstract Landroidx/lifecycle/LifecycleRegistryOwner;
+.super Ljava/lang/Object;
+.source "LifecycleRegistryOwner.java"
+
+# interfaces
+.implements Landroidx/lifecycle/LifecycleOwner;
+
+
+# annotations
+.annotation runtime Ljava/lang/Deprecated;
+.end annotation
+
+
+# virtual methods
+.method public abstract getLifecycle()Landroidx/lifecycle/LifecycleRegistry;
+.end method
+
+###### Class androidx.lifecycle.LifecycleRegistryOwner.CC (androidx.lifecycle.LifecycleRegistryOwner$-CC)
+.class public final synthetic Landroidx/lifecycle/LifecycleRegistryOwner$-CC;
+.super Ljava/lang/Object;
+.source "LifecycleRegistryOwner.java"
+
+
+# direct methods
+.method public static bridge synthetic $default$getLifecycle(Landroidx/lifecycle/LifecycleRegistryOwner;)Landroidx/lifecycle/Lifecycle;
+    .registers 2
+    .param p0, "_this"    # Landroidx/lifecycle/LifecycleRegistryOwner;
+
+    .line 25
+    invoke-interface {p0}, Landroidx/lifecycle/LifecycleRegistryOwner;->getLifecycle()Landroidx/lifecycle/LifecycleRegistry;
+
+    move-result-object v0
+
+    return-object v0
+.end method

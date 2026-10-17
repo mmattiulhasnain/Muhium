@@ -1,0 +1,625 @@
+###### Class androidx.appcompat.widget.DrawableUtils (androidx.appcompat.widget.DrawableUtils)
+.class public Landroidx/appcompat/widget/DrawableUtils;
+.super Ljava/lang/Object;
+.source "DrawableUtils.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Landroidx/appcompat/widget/DrawableUtils$Api29Impl;,
+        Landroidx/appcompat/widget/DrawableUtils$Api18Impl;
+    }
+.end annotation
+
+
+# static fields
+.field private static final CHECKED_STATE_SET:[I
+
+.field private static final EMPTY_STATE_SET:[I
+
+.field public static final INSETS_NONE:Landroid/graphics/Rect;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .line 50
+    const v0, 0x10100a0
+
+    filled-new-array {v0}, [I
+
+    move-result-object v0
+
+    sput-object v0, Landroidx/appcompat/widget/DrawableUtils;->CHECKED_STATE_SET:[I
+
+    .line 51
+    const/4 v0, 0x0
+
+    new-array v0, v0, [I
+
+    sput-object v0, Landroidx/appcompat/widget/DrawableUtils;->EMPTY_STATE_SET:[I
+
+    .line 53
+    new-instance v0, Landroid/graphics/Rect;
+
+    invoke-direct {v0}, Landroid/graphics/Rect;-><init>()V
+
+    sput-object v0, Landroidx/appcompat/widget/DrawableUtils;->INSETS_NONE:Landroid/graphics/Rect;
+
+    return-void
+.end method
+
+.method private constructor <init>()V
+    .registers 1
+
+    .line 55
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 57
+    return-void
+.end method
+
+.method public static canSafelyMutateDrawable(Landroid/graphics/drawable/Drawable;)Z
+    .registers 2
+    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
+
+    .line 107
+    nop
+
+    .line 109
+    const/4 v0, 0x1
+
+    return v0
+.end method
+
+.method static fixDrawable(Landroid/graphics/drawable/Drawable;)V
+    .registers 4
+    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
+
+    .line 88
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getName()Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 89
+    .local v0, "className":Ljava/lang/String;
+    nop
+
+    .line 94
+    sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v2, 0x1d
+
+    if-lt v1, v2, :cond_20
+
+    sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v2, 0x1f
+
+    if-ge v1, v2, :cond_20
+
+    .line 95
+    const-string v1, "android.graphics.drawable.ColorStateListDrawable"
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_20
+
+    .line 98
+    invoke-static {p0}, Landroidx/appcompat/widget/DrawableUtils;->forceDrawableStateChange(Landroid/graphics/drawable/Drawable;)V
+
+    .line 100
+    :cond_20
+    return-void
+.end method
+
+.method private static forceDrawableStateChange(Landroid/graphics/drawable/Drawable;)V
+    .registers 3
+    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
+
+    .line 149
+    invoke-virtual {p0}, Landroid/graphics/drawable/Drawable;->getState()[I
+
+    move-result-object v0
+
+    .line 150
+    .local v0, "originalState":[I
+    if-eqz v0, :cond_10
+
+    array-length v1, v0
+
+    if-nez v1, :cond_a
+
+    goto :goto_10
+
+    .line 155
+    :cond_a
+    sget-object v1, Landroidx/appcompat/widget/DrawableUtils;->EMPTY_STATE_SET:[I
+
+    invoke-virtual {p0, v1}, Landroid/graphics/drawable/Drawable;->setState([I)Z
+
+    goto :goto_15
+
+    .line 152
+    :cond_10
+    :goto_10
+    sget-object v1, Landroidx/appcompat/widget/DrawableUtils;->CHECKED_STATE_SET:[I
+
+    invoke-virtual {p0, v1}, Landroid/graphics/drawable/Drawable;->setState([I)Z
+
+    .line 158
+    :goto_15
+    invoke-virtual {p0, v0}, Landroid/graphics/drawable/Drawable;->setState([I)Z
+
+    .line 159
+    return-void
+.end method
+
+.method public static getOpticalBounds(Landroid/graphics/drawable/Drawable;)Landroid/graphics/Rect;
+    .registers 7
+    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
+
+    .line 65
+    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v1, 0x1d
+
+    if-lt v0, v1, :cond_18
+
+    .line 66
+    invoke-static {p0}, Landroidx/appcompat/widget/DrawableUtils$Api29Impl;->getOpticalInsets(Landroid/graphics/drawable/Drawable;)Landroid/graphics/Insets;
+
+    move-result-object v0
+
+    .line 67
+    .local v0, "insets":Landroid/graphics/Insets;
+    new-instance v1, Landroid/graphics/Rect;
+
+    iget v2, v0, Landroid/graphics/Insets;->left:I
+
+    iget v3, v0, Landroid/graphics/Insets;->top:I
+
+    iget v4, v0, Landroid/graphics/Insets;->right:I
+
+    iget v5, v0, Landroid/graphics/Insets;->bottom:I
+
+    invoke-direct {v1, v2, v3, v4, v5}, Landroid/graphics/Rect;-><init>(IIII)V
+
+    return-object v1
+
+    .line 73
+    .end local v0    # "insets":Landroid/graphics/Insets;
+    :cond_18
+    nop
+
+    .line 74
+    invoke-static {p0}, Landroidx/core/graphics/drawable/DrawableCompat;->unwrap(Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v0
+
+    invoke-static {v0}, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->getOpticalInsets(Landroid/graphics/drawable/Drawable;)Landroid/graphics/Rect;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method public static parseTintMode(ILandroid/graphics/PorterDuff$Mode;)Landroid/graphics/PorterDuff$Mode;
+    .registers 3
+    .param p0, "value"    # I
+    .param p1, "defaultMode"    # Landroid/graphics/PorterDuff$Mode;
+
+    .line 165
+    sparse-switch p0, :sswitch_data_16
+
+    .line 179
+    return-object p1
+
+    .line 177
+    :sswitch_4
+    sget-object v0, Landroid/graphics/PorterDuff$Mode;->ADD:Landroid/graphics/PorterDuff$Mode;
+
+    return-object v0
+
+    .line 175
+    :sswitch_7
+    sget-object v0, Landroid/graphics/PorterDuff$Mode;->SCREEN:Landroid/graphics/PorterDuff$Mode;
+
+    return-object v0
+
+    .line 173
+    :sswitch_a
+    sget-object v0, Landroid/graphics/PorterDuff$Mode;->MULTIPLY:Landroid/graphics/PorterDuff$Mode;
+
+    return-object v0
+
+    .line 171
+    :sswitch_d
+    sget-object v0, Landroid/graphics/PorterDuff$Mode;->SRC_ATOP:Landroid/graphics/PorterDuff$Mode;
+
+    return-object v0
+
+    .line 169
+    :sswitch_10
+    sget-object v0, Landroid/graphics/PorterDuff$Mode;->SRC_IN:Landroid/graphics/PorterDuff$Mode;
+
+    return-object v0
+
+    .line 167
+    :sswitch_13
+    sget-object v0, Landroid/graphics/PorterDuff$Mode;->SRC_OVER:Landroid/graphics/PorterDuff$Mode;
+
+    return-object v0
+
+    :sswitch_data_16
+    .sparse-switch
+        0x3 -> :sswitch_13
+        0x5 -> :sswitch_10
+        0x9 -> :sswitch_d
+        0xe -> :sswitch_a
+        0xf -> :sswitch_7
+        0x10 -> :sswitch_4
+    .end sparse-switch
+.end method
+
+###### Class androidx.appcompat.widget.DrawableUtils.Api18Impl (androidx.appcompat.widget.DrawableUtils$Api18Impl)
+.class Landroidx/appcompat/widget/DrawableUtils$Api18Impl;
+.super Ljava/lang/Object;
+.source "DrawableUtils.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/appcompat/widget/DrawableUtils;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x8
+    name = "Api18Impl"
+.end annotation
+
+
+# static fields
+.field private static final sBottom:Ljava/lang/reflect/Field;
+
+.field private static final sGetOpticalInsets:Ljava/lang/reflect/Method;
+
+.field private static final sLeft:Ljava/lang/reflect/Field;
+
+.field private static final sReflectionSuccessful:Z
+
+.field private static final sRight:Ljava/lang/reflect/Field;
+
+.field private static final sTop:Ljava/lang/reflect/Field;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 11
+
+    .line 194
+    const/4 v0, 0x0
+
+    .line 195
+    .local v0, "getOpticalInsets":Ljava/lang/reflect/Method;
+    const/4 v1, 0x0
+
+    .line 196
+    .local v1, "left":Ljava/lang/reflect/Field;
+    const/4 v2, 0x0
+
+    .line 197
+    .local v2, "top":Ljava/lang/reflect/Field;
+    const/4 v3, 0x0
+
+    .line 198
+    .local v3, "right":Ljava/lang/reflect/Field;
+    const/4 v4, 0x0
+
+    .line 199
+    .local v4, "bottom":Ljava/lang/reflect/Field;
+    const/4 v5, 0x0
+
+    .line 202
+    .local v5, "success":Z
+    const/4 v6, 0x0
+
+    :try_start_7
+    const-string v7, "android.graphics.Insets"
+
+    invoke-static {v7}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+
+    move-result-object v7
+
+    .line 203
+    .local v7, "insets":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
+    const-class v8, Landroid/graphics/drawable/Drawable;
+
+    const-string v9, "getOpticalInsets"
+
+    new-array v10, v6, [Ljava/lang/Class;
+
+    invoke-virtual {v8, v9, v10}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v8
+
+    move-object v0, v8
+
+    .line 204
+    const-string v8, "left"
+
+    invoke-virtual {v7, v8}, Ljava/lang/Class;->getField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+
+    move-result-object v8
+
+    move-object v1, v8
+
+    .line 205
+    const-string/jumbo v8, "top"
+
+    invoke-virtual {v7, v8}, Ljava/lang/Class;->getField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+
+    move-result-object v8
+
+    move-object v2, v8
+
+    .line 206
+    const-string v8, "right"
+
+    invoke-virtual {v7, v8}, Ljava/lang/Class;->getField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+
+    move-result-object v8
+
+    move-object v3, v8
+
+    .line 207
+    const-string v8, "bottom"
+
+    invoke-virtual {v7, v8}, Ljava/lang/Class;->getField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+
+    move-result-object v8
+    :try_end_34
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_7 .. :try_end_34} :catch_3b
+    .catch Ljava/lang/ClassNotFoundException; {:try_start_7 .. :try_end_34} :catch_39
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_7 .. :try_end_34} :catch_37
+
+    move-object v4, v8
+
+    .line 208
+    const/4 v5, 0x1
+
+    .end local v7    # "insets":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
+    goto :goto_3c
+
+    .line 213
+    :catch_37
+    move-exception v7
+
+    goto :goto_3d
+
+    .line 211
+    :catch_39
+    move-exception v7
+
+    goto :goto_3c
+
+    .line 209
+    :catch_3b
+    move-exception v7
+
+    .line 215
+    :goto_3c
+    nop
+
+    .line 217
+    :goto_3d
+    if-eqz v5, :cond_4d
+
+    .line 218
+    sput-object v0, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sGetOpticalInsets:Ljava/lang/reflect/Method;
+
+    .line 219
+    sput-object v1, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sLeft:Ljava/lang/reflect/Field;
+
+    .line 220
+    sput-object v2, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sTop:Ljava/lang/reflect/Field;
+
+    .line 221
+    sput-object v3, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sRight:Ljava/lang/reflect/Field;
+
+    .line 222
+    sput-object v4, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sBottom:Ljava/lang/reflect/Field;
+
+    .line 223
+    const/4 v6, 0x1
+
+    sput-boolean v6, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sReflectionSuccessful:Z
+
+    goto :goto_5a
+
+    .line 225
+    :cond_4d
+    const/4 v7, 0x0
+
+    sput-object v7, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sGetOpticalInsets:Ljava/lang/reflect/Method;
+
+    .line 226
+    sput-object v7, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sLeft:Ljava/lang/reflect/Field;
+
+    .line 227
+    sput-object v7, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sTop:Ljava/lang/reflect/Field;
+
+    .line 228
+    sput-object v7, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sRight:Ljava/lang/reflect/Field;
+
+    .line 229
+    sput-object v7, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sBottom:Ljava/lang/reflect/Field;
+
+    .line 230
+    sput-boolean v6, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sReflectionSuccessful:Z
+
+    .line 232
+    .end local v0    # "getOpticalInsets":Ljava/lang/reflect/Method;
+    .end local v1    # "left":Ljava/lang/reflect/Field;
+    .end local v2    # "top":Ljava/lang/reflect/Field;
+    .end local v3    # "right":Ljava/lang/reflect/Field;
+    .end local v4    # "bottom":Ljava/lang/reflect/Field;
+    .end local v5    # "success":Z
+    :goto_5a
+    return-void
+.end method
+
+.method private constructor <init>()V
+    .registers 1
+
+    .line 234
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 236
+    return-void
+.end method
+
+.method static getOpticalInsets(Landroid/graphics/drawable/Drawable;)Landroid/graphics/Rect;
+    .registers 7
+    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
+
+    .line 241
+    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v1, 0x1d
+
+    if-ge v0, v1, :cond_38
+
+    sget-boolean v0, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sReflectionSuccessful:Z
+
+    if-eqz v0, :cond_38
+
+    .line 243
+    :try_start_a
+    sget-object v0, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sGetOpticalInsets:Ljava/lang/reflect/Method;
+
+    const/4 v1, 0x0
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    invoke-virtual {v0, p0, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    .line 244
+    .local v0, "insets":Ljava/lang/Object;
+    if-eqz v0, :cond_33
+
+    .line 245
+    new-instance v1, Landroid/graphics/Rect;
+
+    sget-object v2, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sLeft:Ljava/lang/reflect/Field;
+
+    .line 246
+    invoke-virtual {v2, v0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
+
+    move-result v2
+
+    sget-object v3, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sTop:Ljava/lang/reflect/Field;
+
+    .line 247
+    invoke-virtual {v3, v0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
+
+    move-result v3
+
+    sget-object v4, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sRight:Ljava/lang/reflect/Field;
+
+    .line 248
+    invoke-virtual {v4, v0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
+
+    move-result v4
+
+    sget-object v5, Landroidx/appcompat/widget/DrawableUtils$Api18Impl;->sBottom:Ljava/lang/reflect/Field;
+
+    .line 249
+    invoke-virtual {v5, v0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
+
+    move-result v5
+
+    invoke-direct {v1, v2, v3, v4, v5}, Landroid/graphics/Rect;-><init>(IIII)V
+    :try_end_32
+    .catch Ljava/lang/IllegalAccessException; {:try_start_a .. :try_end_32} :catch_36
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_a .. :try_end_32} :catch_34
+
+    .line 245
+    return-object v1
+
+    .line 244
+    .end local v0    # "insets":Ljava/lang/Object;
+    :cond_33
+    goto :goto_37
+
+    .line 254
+    :catch_34
+    move-exception v0
+
+    goto :goto_38
+
+    .line 252
+    :catch_36
+    move-exception v0
+
+    .line 256
+    :goto_37
+    nop
+
+    .line 258
+    :cond_38
+    :goto_38
+    sget-object v0, Landroidx/appcompat/widget/DrawableUtils;->INSETS_NONE:Landroid/graphics/Rect;
+
+    return-object v0
+.end method
+
+###### Class androidx.appcompat.widget.DrawableUtils.Api29Impl (androidx.appcompat.widget.DrawableUtils$Api29Impl)
+.class Landroidx/appcompat/widget/DrawableUtils$Api29Impl;
+.super Ljava/lang/Object;
+.source "DrawableUtils.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/appcompat/widget/DrawableUtils;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x8
+    name = "Api29Impl"
+.end annotation
+
+
+# direct methods
+.method private constructor <init>()V
+    .registers 1
+
+    .line 264
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 266
+    return-void
+.end method
+
+.method static getOpticalInsets(Landroid/graphics/drawable/Drawable;)Landroid/graphics/Insets;
+    .registers 2
+    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
+
+    .line 270
+    invoke-virtual {p0}, Landroid/graphics/drawable/Drawable;->getOpticalInsets()Landroid/graphics/Insets;
+
+    move-result-object v0
+
+    return-object v0
+.end method
